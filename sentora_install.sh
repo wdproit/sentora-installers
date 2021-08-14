@@ -121,7 +121,7 @@ if [[ "$OS" = "CentOs" || "$OS" = "vzlinux" ]] ; then
     }
 
     if  [[ "$OS" = "vzlinux" && "$VER" = "8" ]]; then
-        DB_PCKG="mariadb-server" &&  echo "DB server will be mariaDB (mariadb-server)"
+        DB_PCKG="mariadb" &&  echo "DB server will be mariaDB (mariadb-server)"
     elif  [[ "$VER" = "7" ]]; then
         DB_PCKG="mariadb" &&  echo "DB server will be mariaDB"
     else 
