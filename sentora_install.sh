@@ -73,7 +73,7 @@ echo "Detected : $OS  $VER  $ARCH"
 if [[ "$OS" = "CentOs" && ("$VER" = "6" || "$VER" = "7" ) || 
       "$OS" = "Ubuntu" && ("$VER" = "12.04" || "$VER" = "14.04" ) || 
       "$OS" = "debian" && ("$VER" = "7" || "$VER" = "8" ) || 
-      "$OS" = "virtuozzo" && "$VER" = "8" ]] ; then
+      "$OS" = "virtuozzo" && ("$VER" = "8" ) ]] ; then
     echo "Ok."
 else
     echo "Sorry, this OS is not supported by Sentora." 
