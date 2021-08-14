@@ -76,7 +76,7 @@ if [[ "$OS" = "CentOs" && ("$VER" = "6" || "$VER" = "7" ) ||
       "$OS" = "virtuozzo" && ("$VER" = "8" ) ]] ; then
     echo "Ok."
 else
-    echo "Sorry, this OS is not supported by Sentora." 
+    echo "Sorry, this OS is not supported by WDPSentora." 
     exit 1
 fi
 
