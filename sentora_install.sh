@@ -971,8 +971,10 @@ mysql -u root -p"$mysqlpassword" -e "UPDATE sentora_core.x_settings SET so_value
 sed -i "s|KeepAlive Off|KeepAlive On|" "$HTTP_CONF_PATH"
 
 # Permissions fix for Apache and ProFTPD (to enable them to play nicely together!)
-if ! grep -q "umask 002" "$HTTP_VARS_PATH"; then
-    echo "umask 002" >> "$HTTP_VARS_PATH";
+if [[ "$OS" != "vzlinux" ]] ; then
+    if ! grep -q "umask 002" "$HTTP_VARS_PATH"; then
+        echo "umask 002" >> "$HTTP_VARS_PATH";
+    fi
 fi
 
 # remove default virtual site to ensure Sentora is the default vhost
