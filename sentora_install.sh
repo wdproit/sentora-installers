@@ -361,10 +361,10 @@ fi
 
 #--- Adapt repositories and packages sources
 echo -e "\n-- Updating repositories and packages sources"
-if [[ "$OS" = "CentOs" || "$OS" = "vzlinux" ]]; then
+if [[ "$OS" = "CentOs" ]]; then
 #EPEL Repo Install
   EPEL_BASE_URL="http://dl.fedoraproject.org/pub/epel/$VER/$ARCH";
-  if  [[ "$VER" = "7" || "$VER" = "8" ]]; then
+  if  [[ "$VER" = "7" ]]; then
      EPEL_FILE=$(wget -q -O- "$EPEL_BASE_URL/Packages/e/" | grep -oP '(?<=href=")epel-release.*(?=">)')
      wget "$EPEL_BASE_URL/Packages/e/$EPEL_FILE"
   else
@@ -373,12 +373,16 @@ if [[ "$OS" = "CentOs" || "$OS" = "vzlinux" ]]; then
   fi
   $PACKAGE_INSTALLER -y install epel-release*.rpm
   rm "$EPEL_FILE"
-    
-    #To fix some problems of compatibility use of mirror centos.org to all users
-    #Replace all mirrors by base repos to avoid any problems.
-    sed -i 's|mirrorlist=http://mirrorlist.centos.org|#mirrorlist=http://mirrorlist.centos.org|' "/etc/yum.repos.d/CentOS-Base.repo"
-    sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://mirror.centos.org|' "/etc/yum.repos.d/CentOS-Base.repo"
 
+  #To fix some problems of compatibility use of mirror centos.org to all users
+  #Replace all mirrors by base repos to avoid any problems.
+  sed -i 's|mirrorlist=http://mirrorlist.centos.org|#mirrorlist=http://mirrorlist.centos.org|' "/etc/yum.repos.d/CentOS-Base.repo"
+  sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://mirror.centos.org|' "/etc/yum.repos.d/CentOS-Base.repo"
+elif [[ "$OS" = "vzlinux" ]]; then
+  $PACKAGE_INSTALLER -y install epel-release
+fi
+
+if [[ "$OS" = "CentOs" || "$OS" = "vzlinux" ]]; then    
     #check if the machine and on openvz
     if [ -f "/etc/yum.repos.d/vz.repo" ]; then
         sed -i "s|mirrorlist=http://vzdownload.swsoft.com/download/mirrors/centos-$VER|baseurl=http://vzdownload.swsoft.com/ez/packages/centos/$VER/$ARCH/os/|" "/etc/yum.repos.d/vz.repo"
@@ -1025,9 +1029,18 @@ fi
 
 #--- PHP
 echo -e "\n-- Installing and configuring PHP"
-if [[ "$OS" = "CentOs" || "$OS" = "vzlinux" ]]; then
+if [[ "$OS" = "CentOs" ]]; then
     $PACKAGE_INSTALLER php php-devel php-gd php-mbstring php-intl php-mysql php-xml php-xmlrpc
     $PACKAGE_INSTALLER php-mcrypt php-imap  #Epel packages
+    PHP_INI_PATH="/etc/php.ini"
+    PHP_EXT_PATH="/etc/php.d"
+elif [[ "$OS" = "vzlinux" ]]; then
+    dnf install yum-utils
+    dnf install https://rpms.remirepo.net/enterprise/remi-release-8.rpm
+    dnf install php74 php74-php-devel php74-php-gd php74-php-mbstring php74-php-intl php74-php-mysqlnd php74-php-xml php74-php-xmlrpc
+    dnf install php74-php-mcrypt php74-php-imap
+    yum install scl-utils scl-utils-build
+    scl enable php74 bash
     PHP_INI_PATH="/etc/php.ini"
     PHP_EXT_PATH="/etc/php.d"
 elif [[ "$OS" = "Ubuntu" || "$OS" = "debian" ]]; then
