@@ -1040,7 +1040,7 @@ elif [[ "$OS" = "vzlinux" ]]; then
     dnf install php74 php74-php-devel php74-php-gd php74-php-mbstring php74-php-intl php74-php-mysqlnd php74-php-xml php74-php-xmlrpc
     dnf install php74-php-mcrypt php74-php-imap
     yum install scl-utils scl-utils-build
-    scl enable php74 bash
+    #scl enable php74 bash
     PHP_INI_PATH="/etc/php.ini"
     PHP_EXT_PATH="/etc/php.d"
 elif [[ "$OS" = "Ubuntu" || "$OS" = "debian" ]]; then
