@@ -1035,11 +1035,16 @@ if [[ "$OS" = "CentOs" ]]; then
     PHP_INI_PATH="/etc/php.ini"
     PHP_EXT_PATH="/etc/php.d"
 elif [[ "$OS" = "vzlinux" ]]; then
-    sudo yum -y install yum-utils
-    sudo yum -y install https://rpms.remirepo.net/enterprise/remi-release-8.rpm
-    sudo yum-config-manager --enable remi-php74
-    sudo yum install php php-cli php-common php-devel php-gd php-mbstring php-intl php-mysqlnd php-xml php-xmlrpc
-    sudo yum -y install php-pecl-mcrypt php-imap
+    dnf -y install https://rpms.remirepo.net/enterprise/remi-release-8.rpm
+    dnf -y module enable php:remi-7.4
+    dnf -y install php php-cli php-common php-devel php-gd php-mbstring php-intl php-mysqlnd php-xml php-xmlrpc
+    dnf -y install php-pecl-mcrypt php-imap
+    #
+    #sudo yum -y install yum-utils
+    #sudo yum -y install https://rpms.remirepo.net/enterprise/remi-release-8.rpm
+    #sudo yum-config-manager --enable remi-php74
+    #sudo yum install php php-cli php-common php-devel php-gd php-mbstring php-intl php-mysqlnd php-xml php-xmlrpc
+    #sudo yum -y install php-pecl-mcrypt php-imap
     #dnf install php74 php74-php-devel php74-php-gd php74-php-mbstring php74-php-intl php74-php-mysqlnd php74-php-xml php74-php-xmlrpc
     #dnf install php74-php-mcrypt php74-php-imap
     #yum install scl-utils scl-utils-build
