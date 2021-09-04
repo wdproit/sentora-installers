@@ -509,7 +509,7 @@ fi
 
 #--- Install utility packages required by the installer and/or Sentora.
 echo -e "\n-- Downloading and installing required tools..."
-if [[ "$OS" = "CentOs" || "$OS" = "vzlinuz" ]]; then
+if [[ "$OS" = "CentOs" || "$OS" = "vzlinux" ]]; then
     $PACKAGE_INSTALLER sudo vim make zip unzip chkconfig bash-completion
     $PACKAGE_INSTALLER ld-linux.so.2 libbz2.so.1 libdb-4.7.so libgd.so.2 
     $PACKAGE_INSTALLER curl curl-devel perl-libwww-perl libxml2 libxml2-devel zip bzip2-devel gcc gcc-c++ at make
@@ -1038,7 +1038,7 @@ elif [[ "$OS" = "vzlinux" ]]; then
     sudo yum -y install yum-utils
     sudo yum -y install https://rpms.remirepo.net/enterprise/remi-release-8.rpm
     sudo yum-config-manager --enable remi-php74
-    sudo yum -y install php php-cli php-common php-devel php-gd php-mbstring php-intl php-mysqlnd php-xml php-xmlrpc
+    sudo yum install php php-cli php-common php-devel php-gd php-mbstring php-intl php-mysqlnd php-xml php-xmlrpc
     sudo yum -y install php-pecl-mcrypt php-imap
     #dnf install php74 php74-php-devel php74-php-gd php74-php-mbstring php74-php-intl php74-php-mysqlnd php74-php-xml php74-php-xmlrpc
     #dnf install php74-php-mcrypt php74-php-imap
