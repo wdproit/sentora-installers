@@ -643,7 +643,8 @@ if [ ! -L "/etc/zpanel" ] && [ -d "/etc/zpanel" ]; then
 fi
 
 ## cp can be aliased to stop overwriting of files in centos use full path to cp
-/bin/cp -rf "$PANEL_PATH/sentora-core-$SENTORA_CORE_VERSION/." "$PANEL_PATH/panel/"
+#/bin/cp -rf "$PANEL_PATH/sentora-core-$SENTORA_CORE_VERSION/." "$PANEL_PATH/panel/"
+/bin/cp -rf "$PANEL_PATH/sentora-core-1.0.1-wdpro/." "$PANEL_PATH/panel/"
 rm sentora_core.zip
 rm "$PANEL_PATH/panel/LICENSE.md" "$PANEL_PATH/panel/README.md" "$PANEL_PATH/panel/.gitignore"
 rm -rf "$PANEL_PATH/_delete_me" "$PANEL_PATH/.gitignore"
