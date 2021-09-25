@@ -523,7 +523,8 @@ echo -e "\n-- Downloading Sentora, Please wait, this may take several minutes, t
 # Get latest sentora
 while true; do
     # wget -nv -O sentora_core.zip https://github.com/sentora/sentora-core/archive/$SENTORA_CORE_VERSION.zip
-    wget -nv -O sentora_core.zip https://github.com/wdproit/sentora-core/archive/refs/tags/1.0.1-wdpro.zip
+    # wget -nv -O sentora_core.zip https://github.com/wdproit/sentora-core/archive/refs/tags/1.0.1-wdpro.zip
+    wget -nv -O sentora_core.zip https://github.com/wdproit/sentora-core/archive/1.0.1-wdpro.zip
     if [[ -f sentora_core.zip ]]; then
         break;
     else
