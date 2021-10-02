@@ -121,7 +121,7 @@ if [[ "$OS" = "CentOs" || "$OS" = "vzlinux" ]] ; then
     }
 
     if  [[ "$OS" = "vzlinux" && "$VER" = "8" ]]; then
-        DB_PCKG="mariadb" &&  echo "DB server will be mariaDB (mariadb-server)"
+        DB_PCKG="mysql" && echo "DB server will be mySQL (mysql-server)"
     elif  [[ "$VER" = "7" ]]; then
         DB_PCKG="mariadb" &&  echo "DB server will be mariaDB"
     else
@@ -750,7 +750,7 @@ $PACKAGE_INSTALLER "$DB_PCKG"
 if [[ "$OS" = "CentOs"  || "$OS" = "vzlinux" ]]; then
     $PACKAGE_INSTALLER "$DB_PCKG-devel" "$DB_PCKG-server"
     MY_CNF_PATH="/etc/my.cnf"
-    if  [[ "$VER" = "7" || "$VER" = "8" ]]; then
+    if  [[ "$VER" = "7" ]]; then
         DB_SERVICE="mariadb"
     else
         DB_SERVICE="mysqld"
