@@ -747,7 +747,7 @@ fi
 #--- MySQL
 echo -e "\n-- Installing MySQL"
 if  [[ "$OS" = "vzlinux" && "$VER" = "8" ]]; then
-    $PACKAGE_INSTALLER -y remove mariadb*
+    $PACKAGE_INSTALLER remove mariadb* -y
 fi
 $PACKAGE_INSTALLER "$DB_PCKG"
 if [[ "$OS" = "CentOs"  || "$OS" = "vzlinux" ]]; then
